@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djc1oxa5t31p8"]
+
+[ext_resource type="Texture2D" uid="uid://4yaxs7bh7uba" path="res://owocki_background.jpg" id="1_q4er4"]
+
+[node name="Board" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q4er4")
