@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c04fsffn5w137"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_7gdwy"]
+[ext_resource type="Texture2D" uid="uid://4yaxs7bh7uba" path="res://images/owocki_background.jpg" id="2_bjql4"]
+[ext_resource type="PackedScene" uid="uid://cu2hltofptec0" path="res://scenes/tile.tscn" id="2_lwcsn"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_7gdwy")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(540, 960)
+texture = ExtResource("2_bjql4")
+
+[node name="Tile1" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(437, 608)
+
+[node name="Tile2" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(653, 608)
+
+[node name="Tile3" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(221, 824)
+
+[node name="Tile4" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(437, 824)
+
+[node name="Tile5" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(653, 824)
+
+[node name="Tile6" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(869, 824)
+
+[node name="Tile7" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(221, 1040)
+
+[node name="Tile8" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(437, 1040)
+
+[node name="Tile9" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(653, 1040)
+
+[node name="Tile10" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(869, 1040)
+
+[node name="Tile11" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(437, 1256)
+
+[node name="Tile12" parent="." instance=ExtResource("2_lwcsn")]
+position = Vector2(653, 1256)

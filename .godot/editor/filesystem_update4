@@ -1,5 +1,10 @@
-res://board.tscn
-res://pionek.tscn
-res://tiles.gd
-res://empty_tile.gd
-res://pionek.gd
+res://scenes/game.tscn
+res://scenes/Tile.tscn
+res://scripts/Tile.gd
+res://scenes/board.tscn
+res://scenes/board.gd
+res://scenes/piece.tscn
+res://scripts/piece.gd
+res://scripts/Game.gd
+res://scenes/tile.tscn
+res://scripts/board.gd
