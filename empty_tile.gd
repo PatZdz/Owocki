@@ -6,6 +6,11 @@ func is_empty() -> bool:
 	return pionek == null  # Pole jest puste, jeśli nie ma pionka
 
 func set_pionek(new_pionek):
-	pionek = new_pionek
 	if pionek:
-		pionek.position = position  # Ustaw pionek na środku pola
+		remove_child(pionek)  # Usuń poprzedni pionek, jeśli istnieje
+
+	pionek = new_pionek
+
+	if pionek:
+		add_child(pionek)  # Dodaj pionek jako dziecko pola
+		pionek.position = Vector2(0, 0)  # Ustaw pionek na środku pola

@@ -1,4 +1,5 @@
 res://board.tscn
-res://empty_tile.gd
+res://pionek.tscn
 res://tiles.gd
+res://empty_tile.gd
 res://pionek.gd

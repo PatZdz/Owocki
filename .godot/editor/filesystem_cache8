@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1736039045
+::res://::1736165017
 1_blue.png::CompressedTexture2D::8553161617968615534::1736036461::1736036833::1::::<><>::
 1_yellow.png::CompressedTexture2D::8912067818754999056::1736036461::1736036833::1::::<><>::
 2_blue.png::CompressedTexture2D::3732512041694513382::1736036461::1736036833::1::::<><>::
@@ -7,8 +7,12 @@ ea4bc82a6ad023ab7ee23ee620429895
 3_blue.png::CompressedTexture2D::8170444613199285462::1736036461::1736036833::1::::<><>::
 3_yellow.png::CompressedTexture2D::1524734967251629105::1736036461::1736036833::1::::<><>::
 back.png::CompressedTexture2D::4475346232793132517::1736036461::1736036833::1::::<><>::
-board.tscn::PackedScene::7796695251682948311::1736036501::0::1::::<><>::uid://4yaxs7bh7uba::::res://owocki_background.jpg
+board.tscn::PackedScene::7796695251682948311::1736164989::0::1::::<><>::uid://4yaxs7bh7uba::::res://owocki_background.jpg<>uid://b0tfmk3x7qmvn::::res://empty_tile.png<>res://tiles.gd<>res://empty_tile.gd
+empty_tile.gd::GDScript::-1::1736164629::0::1::::<>Node2D<>::
 empty_tile.png::CompressedTexture2D::4180690536038183527::1736037091::1736039017::1::::<><>::
 icon.svg::CompressedTexture2D::5093572980554848212::1736034321::1736036833::1::::<><>::
 owocki_background.jpg::CompressedTexture2D::2085063599770300930::1736036314::1736036833::1::::<><>::
+pionek.gd::GDScript::-1::1736164637::0::1::::<>Sprite2D<>::
+pionek.tscn::PackedScene::7159830867384848939::1736164640::0::1::::<><>::uid://b405kfgdbir8p::::res://back.png
 README.md::TextFile::-1::1736036750::0::1::::<><>::
+tiles.gd::GDScript::-1::1736164946::0::1::::<>Node2D<>::
