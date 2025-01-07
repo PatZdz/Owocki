@@ -8,3 +8,5 @@ res://scripts/piece.gd
 res://scripts/Game.gd
 res://scenes/tile.tscn
 res://scripts/board.gd
+res://scripts/tile.gd
+res://scripts/game.gd

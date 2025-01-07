@@ -1,14 +1,19 @@
 extends Node2D
+class_name Board
 
 var tile_list: Array = []
-var piece_positions: Array = []  # Do zapisywania, który pionek jest na którym polu
 
 func _ready():
-	# Zbierz wszystkie Tile (Area2D) znajdujące się w Board
-	for tile in get_children():
-		if tile is Area2D:
-			tile_list.append(tile)
+	# Wypełniamy tablicę tile_list dziećmi typu Tile
+	for node in get_children():
+		if node is Tile:
+			tile_list.append(node)
 
-	# Ustal tile_index
-	for i in range(tile_list.size()):
-		tile_list[i].tile_index = i
+	# Debug: sprawdź, ile kafelków znaleziono
+	print("[board.gd] tile_list.size() =", tile_list.size())
+
+func get_tile_by_coords(coords: Vector2i) -> Tile:
+	for t in tile_list:
+		if t.tile_coords == coords:
+			return t
+	return null
