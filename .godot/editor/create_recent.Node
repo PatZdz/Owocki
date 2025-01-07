@@ -1,5 +1,8 @@
-CollisionShape2D
 Sprite2D
+Button
+HBoxContainer
+Control
+CollisionShape2D
 Area2D
 Node2D
 TileMapLayer

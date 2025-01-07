@@ -1,9 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://ef7i0diorsso"]
+[gd_scene load_steps=5 format=3 uid="uid://ef7i0diorsso"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_yjs8r"]
 [ext_resource type="PackedScene" uid="uid://c04fsffn5w137" path="res://scenes/board.tscn" id="2_02k78"]
+[ext_resource type="Texture2D" uid="uid://7taudrfxtipf" path="res://images/Arrow_Left.png" id="3_6l7i1"]
+[ext_resource type="Texture2D" uid="uid://w4x3yqb7ebik" path="res://images/Arrow_Right.png" id="4_mdnur"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yjs8r")
 
 [node name="Board" parent="." instance=ExtResource("2_02k78")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RotationPanel" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = 1440.0
+offset_right = 862.0
+offset_bottom = 1698.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+
+[node name="ButtonLeft" type="Button" parent="UI/RotationPanel"]
+layout_mode = 2
+icon = ExtResource("3_6l7i1")
+
+[node name="ButtonRight" type="Button" parent="UI/RotationPanel"]
+layout_mode = 2
+icon = ExtResource("4_mdnur")
+
+[connection signal="pressed" from="UI/RotationPanel/ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="UI/RotationPanel/ButtonRight" to="." method="_on_button_right_pressed"]
