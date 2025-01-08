@@ -4,12 +4,10 @@ class_name Board
 var tile_list: Array = []
 
 func _ready():
-	# Wypełniamy tablicę tile_list dziećmi typu Tile
-	for node in get_children():
-		if node is Tile:
-			tile_list.append(node)
+	for child in get_children():
+		if child is Tile:
+			tile_list.append(child)
 
-	# Debug: sprawdź, ile kafelków znaleziono
 	print("[board.gd] tile_list.size() =", tile_list.size())
 
 func get_tile_by_coords(coords: Vector2i) -> Tile:

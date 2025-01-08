@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game
 
 const PIECE_COUNT = 12
 
@@ -17,11 +18,11 @@ func _ready():
 func create_pieces():
 	var piece_definitions = [
 		# 6 niebieskich
-		{"color": "blue",   "move_type": 0},  # 1kropka
+		{"color": "blue",   "move_type": 0},  # 1 kropka
 		{"color": "blue",   "move_type": 0},
-		{"color": "blue",   "move_type": 1},  # 2kropki
+		{"color": "blue",   "move_type": 1},  # 2 kropki
 		{"color": "blue",   "move_type": 1},
-		{"color": "blue",   "move_type": 2},  # 3kropki
+		{"color": "blue",   "move_type": 2},  # 3 kropki
 		{"color": "blue",   "move_type": 2},
 
 		# 6 żółtych
@@ -41,16 +42,15 @@ func create_pieces():
 		add_child(p)
 
 func randomize_pieces_on_board():
-	# Sprawdź, czy w ogóle mamy 12 tile
+	# Sprawdź, czy mamy co najmniej 12 tile
 	if board.tile_list.size() < PIECE_COUNT:
-		print("[game.gd] Błąd: tile_list ma mniej niż 12 kafelków!")
+		print("[game.gd] Błąd: board ma za mało kafelków! tile_list.size() =", board.tile_list.size())
 		return
 
 	pieces.shuffle()
 	var tile_list = board.tile_list
 	tile_list.shuffle()
 
-	# Ustaw pionki na kafelkach
 	for i in range(PIECE_COUNT):
 		var piece = pieces[i]
 		var tile = tile_list[i]
@@ -59,7 +59,7 @@ func randomize_pieces_on_board():
 		tile.set_piece(piece)
 
 func on_piece_clicked(piece: Piece):
-	# 1. Jeśli klik w ten sam pionek -> odznacz
+	# Jeśli to ten sam pionek -> odznacz
 	if selected_piece == piece:
 		piece.set_selected(false)
 		selected_piece = null
@@ -67,19 +67,18 @@ func on_piece_clicked(piece: Piece):
 		update_rotation_ui_visibility()
 		return
 
-	# 2. Inny pionek -> odznacz stary, zaznacz nowy
+	# Inny pionek
 	if selected_piece:
 		selected_piece.set_selected(false)
 	selected_piece = piece
 	piece.set_selected(true)
 
-	# Podświetl kafelki
+	# Podświetl
 	_unhighlight_tiles()
 	var possible_moves = piece.get_available_moves(board)
-
 	print("[game.gd] possible_moves.size() =", possible_moves.size())
 	for t in possible_moves:
-		print("  -> highlight tile:", t.tile_coords)
+		print("   highlight tile:", t.tile_coords)
 		t.highlight()
 		highlighted_tiles.append(t)
 
@@ -90,28 +89,24 @@ func on_tile_chosen(tile: Tile):
 		return
 
 	if not tile in highlighted_tiles:
-		# Nie jest dozwolonym ruchem
 		return
 
-	# Jeśli jest wrogi pionek -> usuń go
 	if tile.is_occupied():
 		var enemy = tile.piece_reference
 		if enemy and enemy.color != selected_piece.color:
+			# Zbij wroga
 			enemy.queue_free()
 			tile.remove_piece()
 
 	# Przenieś pionek
-	if selected_piece.current_tile:
-		selected_piece.current_tile.remove_piece()
-
+	selected_piece.current_tile.remove_piece()
 	tile.set_piece(selected_piece)
 	selected_piece.current_tile = tile
 	selected_piece.position = tile.position
 
-	# Odznacz po ruchu
+	# Odznacz
 	selected_piece.set_selected(false)
 	selected_piece = null
-
 	_unhighlight_tiles()
 	update_rotation_ui_visibility()
 

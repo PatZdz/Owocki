@@ -7,7 +7,7 @@ enum Direction {UP, RIGHT, DOWN, LEFT}
 @export var move_type: int = 0  # 0=1kropka,1=2kropki,2=3kropki
 
 var revealed: bool = false
-var current_tile = null
+var current_tile = null  # Tile, na którym stoi
 var direction: int = Direction.UP
 var is_selected: bool = false
 
@@ -17,11 +17,9 @@ func _ready():
 
 func _on_piece_clicked(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		# 1. Zakryty -> Odkrywamy
 		if not revealed:
 			reveal_piece()
 		else:
-			# 2. Odkryty -> sygnalizujemy game
 			var game = get_tree().get_root().get_node("Game")
 			if game:
 				game.on_piece_clicked(self)
@@ -69,7 +67,6 @@ func get_available_moves(board) -> Array:
 		return moves
 
 	var coords = current_tile.tile_coords
-	# Kierunek do przodu
 	var forward_vec = Vector2i(0, -1)
 	if direction == Direction.RIGHT:
 		forward_vec = Vector2i(1, 0)
@@ -85,12 +82,13 @@ func get_available_moves(board) -> Array:
 		candidates.append(coords + forward_vec)
 	# move_type=1 -> 2kropki -> TYLKO ukos
 	elif move_type == 1:
+		# "Ukos" w siatce 2D, = forward_vec + left_vec / right_vec
 		var left_vec = Vector2i(-forward_vec.y, forward_vec.x)
 		var right_vec = Vector2i(forward_vec.y, -forward_vec.x)
 		candidates.append(coords + forward_vec + left_vec)
 		candidates.append(coords + forward_vec + right_vec)
 	else:
-		# move_type=2 -> 3kropki -> przód + ukosy
+		# move_type=2 -> 3kropki -> przód + ukos
 		candidates.append(coords + forward_vec)
 		var left_vec = Vector2i(-forward_vec.y, forward_vec.x)
 		var right_vec = Vector2i(forward_vec.y, -forward_vec.x)
@@ -101,11 +99,9 @@ func get_available_moves(board) -> Array:
 		var tile_candidate = board.get_tile_by_coords(c)
 		if tile_candidate != null:
 			if not tile_candidate.is_occupied():
-				moves.append(tile_candidate)  # wolne
+				moves.append(tile_candidate)
 			else:
 				var occupant = tile_candidate.piece_reference
 				if occupant and occupant.color != color:
-					# wrogi
 					moves.append(tile_candidate)
-				# occupant.color == nasz -> blokada
 	return moves

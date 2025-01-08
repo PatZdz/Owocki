@@ -2,7 +2,7 @@ extends Area2D
 class_name Tile
 
 @export var tile_index: int = 0
-@export var tile_coords: Vector2i = Vector2i(0, 0)  # kolumna, wiersz
+@export var tile_coords: Vector2i = Vector2i(0, 0)  # (x, y) w siatce
 var piece_reference = null
 var is_highlighted = false
 
@@ -20,11 +20,11 @@ func remove_piece():
 
 func highlight():
 	is_highlighted = true
-	# Ustaw z_index, by być nad pionkiem
+	# Wstawmy z_index, aby być nad pionkiem
 	z_index = 10
 	if $SpriteTile:
 		$SpriteTile.z_index = 10
-		$SpriteTile.modulate = Color(1, 0, 0, 0.5)  # czerwień półprzezroczysta
+		$SpriteTile.modulate = Color(1, 0, 0, 0.5)  # czerwone podświetlenie
 
 func unhighlight():
 	is_highlighted = false
@@ -36,9 +36,10 @@ func unhighlight():
 func _on_tile_clicked(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if is_highlighted:
-			# Nie musimy "consume", bo z_index=10
+			# Klik w podświetlony tile -> robimy ruch
 			var game = get_tree().get_root().get_node("Game")
 			if game:
 				game.on_tile_chosen(self)
 		else:
+			# Niepodświetlony -> klik przejdzie do pionka, jeśli tam jest
 			pass
